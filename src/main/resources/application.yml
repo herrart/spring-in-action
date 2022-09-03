@@ -1,0 +1,14 @@
+spring:
+
+  datasource:
+    generate-unique-name: false
+    name: bistrodb
+    url: jdbc:postgresql://localhost:5432/bistro_db
+    username: root
+    password: password
+    driverClassName: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
+      mode: never
+      continue-on-error: true

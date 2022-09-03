@@ -1,0 +1,14 @@
+spring:
+
+  datasource:
+    generate-unique-name: false
+    name: containerized_postgres
+    url: jdbc:postgresql://postgres:5432/bistro_db
+    username: root
+    password: password
+    driverClassName: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
+      mode: always
+      continue-on-error: true
