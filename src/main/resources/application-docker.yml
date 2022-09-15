@@ -1,5 +1,9 @@
 spring:
 
+  jpa:
+    hibernate:
+      ddl-auto: create
+
   datasource:
     generate-unique-name: false
     name: containerized_postgres
@@ -7,8 +11,9 @@ spring:
     username: root
     password: password
     driverClassName: org.postgresql.Driver
-  sql:
-    init:
-      platform: postgres
-      mode: always
-      continue-on-error: true
+
+#  sql:
+#    init:
+#      platform: postgres
+#      mode: never
+#     continue-on-error: true
