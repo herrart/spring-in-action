@@ -1,5 +1,6 @@
 package com.example.springinaction.model;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -10,15 +11,19 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "dish")
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
+@ToString
+@Table
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final Long id;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIME)
-    private Date createdAt;
+    private final Date createdAt;
 
     @NotNull
     @Size(min = 3, message = "Название должно быть не менее 3 символов")
@@ -28,35 +33,4 @@ public class Dish {
     @ManyToMany
     private List<Ingredient> ingredients = new java.util.ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
 }

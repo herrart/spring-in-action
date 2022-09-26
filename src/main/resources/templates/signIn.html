@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign in</title>
+</head>
+
+<body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+<h1>Sign in</h1>
+<img width="200px" th:src="@{/images/icon.svg}"/>
+
+<div th:if="${error}">
+    Unable to login. Check your username and password.
+</div>
+
+<p>New here? Click
+    <a th:href="@{/signup}">here</a> to Sign up.</p>
+
+<form method="POST" th:action="@{/signin}" id="loginForm">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" /><br/>
+
+    <label for="password">Password: </label>
+    <input type="password" name="password" id="password" /><br/>
+
+    <input type="submit" value="Login"/>
+</form>
+</body>
+</html>

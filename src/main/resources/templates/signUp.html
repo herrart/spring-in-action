@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="RU">
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+<form method="POST" th:action="@{/signup}" th:object="${user}">
+    <h1>Заполните данные</h1>
+    <img width="200px" th:src="@{/images/icon.svg}"/>
+
+    <h3>Данные</h3>
+    <label for="username">Имя пользователя: </label>
+    <input type="text" th:field="*{username}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">Username error</span>
+    <br/>
+
+    <label for="password">Пароль: </label>
+    <input type="text" th:field="*{password}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Password error</span>
+    <br/>
+
+    <label for="fullName">ФИО: </label>
+    <input type="text" th:field="*{fullName}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('fullName')}"
+          th:errors="*{fullName}">Full name error</span>
+    <br/>
+
+    <label for="street">Адрес: </label>
+    <input type="text" th:field="*{street}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}">Street error</span>
+    <br/>
+
+    <label for="city">Город: </label>
+    <input type="text" th:field="*{city}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}">City error</span>
+    <br/>
+
+    <label for="state">Область: </label>
+    <input type="text" th:field="*{state}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('state')}"
+          th:errors="*{state}">State error</span>
+    <br/>
+
+    <label for="zip">Индекс: </label>
+    <input type="text" th:field="*{zip}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('zip')}"
+          th:errors="*{zip}">Zip error</span>
+    <br/>
+
+    <label for="phoneNumber">Номер телефона: </label>
+    <input type="text" th:field="*{phoneNumber}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('phoneNumber')}"
+          th:errors="*{phoneNumber}">Phone number error</span>
+    <br/>
+
+    <input type="submit" value="Зарегистрироваться"/>
+</form>
+</body>
+</html>

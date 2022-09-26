@@ -2,17 +2,20 @@ package com.example.springinaction.controller;
 
 import com.example.springinaction.model.Order;
 import com.example.springinaction.repository.OrderRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
-
 @Slf4j
+@AllArgsConstructor
 @Controller
 @RequestMapping("/orders")
 @SessionAttributes("order")
@@ -20,13 +23,14 @@ import javax.validation.Valid;
 public class OrderController {
     private final OrderRepository orderRepository;
 
-    @Autowired
-    public OrderController(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    @GetMapping
+    public String redirectToOrderForm() {
+        return "orderForm";
     }
 
     @GetMapping("current")
-    public String showOrderForm() {
+    public String showOrderForm(Order order) {
+        if (order.getDishes() == null) return "redirect:/design";
         return "orderForm";
     }
 
