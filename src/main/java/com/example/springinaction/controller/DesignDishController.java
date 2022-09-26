@@ -5,8 +5,8 @@ import com.example.springinaction.model.Ingredient;
 import com.example.springinaction.model.Ingredient.Type;
 import com.example.springinaction.model.Order;
 import com.example.springinaction.repository.IngredientRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,17 +17,13 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Slf4j
+@AllArgsConstructor
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
 public class DesignDishController {
 
     private final IngredientRepository ingredientRepository;
-
-    @Autowired
-    public DesignDishController(IngredientRepository ingredientRepository) {
-        this.ingredientRepository = ingredientRepository;
-    }
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {

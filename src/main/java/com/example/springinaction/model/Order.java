@@ -1,8 +1,10 @@
 package com.example.springinaction.model;
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -10,11 +12,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Entity
+@NoArgsConstructor(access = AccessLevel.PUBLIC, force = true)
+@Getter
+@Setter
+@ToString
+@Table(name = "customer_order")
 public class Order {
-    private static final long serialVersionUID = 1L;
-    private Long id;
-    private Date placedAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private final Long id;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIME)
+    private final Date placedAt;
 
     @NotBlank(message = "Поле не должно быть пустым")
     private String deliveryName;
@@ -33,7 +44,7 @@ public class Order {
     private String ccExpiration;
     @Digits(integer = 3, fraction = 0, message = "Некорректный CVV")
     private String ccCVV;
-
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Dish> dishes = new ArrayList<>();
 
     public void addDish(Dish dish) {

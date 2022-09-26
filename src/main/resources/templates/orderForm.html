@@ -6,6 +6,9 @@
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
 <form method="POST" th:action="@{/orders}" th:object="${order}">
     <h1>Order your taco creations!</h1>
     <img width="200px" th:src="@{/images/icon.svg}"/>
@@ -81,6 +84,8 @@
     <br/>
 
     <input type="submit" value="Сделать заказ"/>
+
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 </form>
 </body>
 </html>

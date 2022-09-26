@@ -6,6 +6,9 @@
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
 <h1>Добро пожаловать!</h1>
 <img width="200px" th:src="@{/images/icon.svg}"/>
 
@@ -13,6 +16,7 @@
 <br>
 
 <a th:href="@{/design}">Создать новое блюдо</a>
+<a th:href="@{/signup}">Зарегистрироваться</a>
 
 </body>
 </html>
